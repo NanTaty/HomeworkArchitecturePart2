@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0418f1b80e858ce42b940840df8457f2, type: 3}
+  m_Name: ElfFactory
+  m_EditorClassIdentifier: 
+  elfMage: {fileID: -5487899898930476872, guid: 52d7f5b093cfa2b4193044bee57d5ae7, type: 3}
+  elfPaladin: {fileID: 2538365909556496644, guid: 0ed9a15f8b322a4498fc5e8dc114fb9e, type: 3}

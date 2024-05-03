@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa046819e2994224aab5dd666252b918, type: 3}
+  m_Name: VisitorEnemyFactory
+  m_EditorClassIdentifier: 
+  _humanPrefab: {fileID: 5425429042297286725, guid: 85cb1e738dd09044895694984d0d1158, type: 3}
+  _orkPrefab: {fileID: 8400447506915701153, guid: 250b1b7e8402a284989ca9df8b4758cc, type: 3}
+  _elfPrefab: {fileID: 7645340002551182194, guid: f0de9dc47cac7bb459492d43d9759d2a, type: 3}
+  _robotPrefab: {fileID: 1126816822059284246, guid: f6772280a6abc624e96f63756d912e3b, type: 3}
