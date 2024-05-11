@@ -19,17 +19,14 @@ namespace Assets.Visitor
 
         private AddWeightVisitor _addWeightVisitor;
 
-        private int SpawnWeightValue
+        public void Init(SpawnerWeightConfig spawnerWeightConfig)
         {
-            get => _addWeightVisitor.SpawnWeight;
-            set => _addWeightVisitor.SpawnWeight = value;
+            _addWeightVisitor = new AddWeightVisitor(spawnerWeightConfig);
         }
 
         public void StartWork()
         {
             StopWork();
-            
-            _addWeightVisitor = new AddWeightVisitor();
 
             _spawn = StartCoroutine(Spawn());
         }
@@ -50,20 +47,16 @@ namespace Assets.Visitor
 
         private IEnumerator Spawn()
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
             while (true)
             {
-                if (SpawnWeightValue >= 100)
+                if (!_addWeightVisitor.IsFull)
                 {
-                    yield return waitForSeconds;
-                    continue;
+                    Enemy enemy = _enemyFactory.Get((EnemyType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length));
+                    enemy.MoveTo(_spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)].position);
+                    enemy.Died += OnEnemyDied;
+                    enemy.Accept(_addWeightVisitor);
+                    _spawnedEnemies.Add(enemy);
                 }
-                Enemy enemy = _enemyFactory.Get((EnemyType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length));
-                enemy.MoveTo(_spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)].position);
-                enemy.Died += OnEnemyDied;
-                enemy.Accept(_addWeightVisitor);
-                Debug.Log("Current spawn weight: " + SpawnWeightValue);
-                _spawnedEnemies.Add(enemy);
                 yield return new WaitForSeconds(_spawnCooldown);
             }
         }
@@ -72,31 +65,55 @@ namespace Assets.Visitor
         {
             Notified?.Invoke(enemy);
             enemy.Died -= OnEnemyDied;
-            SpawnWeightValue -= enemy.SpawnWeight;
             _spawnedEnemies.Remove(enemy);
         }
         
         private class AddWeightVisitor : IEnemyVisitor
         {
-            public int SpawnWeight { get; set; }
+            private int _spawnWeight;
+            private readonly SpawnerWeightConfig _spawnerWeightConfig;
+
+            public bool IsFull => _spawnWeight >= _spawnerWeightConfig.MaxWeight;
+
+            public AddWeightVisitor(SpawnerWeightConfig spawnerWeightConfig)
+            {
+                _spawnerWeightConfig = spawnerWeightConfig;
+            }
+            
             public void Visit(Elf elf)
             {
-                SpawnWeight += elf.SpawnWeight;
+                _spawnWeight += _spawnerWeightConfig.ElfWeight;
+                DecreaseOnDeath(elf, _spawnerWeightConfig.ElfWeight);
             }
 
             public void Visit(Human human)
             {
-                SpawnWeight += human.SpawnWeight;
+                _spawnWeight += _spawnerWeightConfig.HumanWeight;
+                DecreaseOnDeath(human, _spawnerWeightConfig.HumanWeight);
             }
 
             public void Visit(Ork ork)
             {
-                SpawnWeight += ork.SpawnWeight;
+                _spawnWeight += _spawnerWeightConfig.OrcWeight;
+                DecreaseOnDeath(ork, _spawnerWeightConfig.OrcWeight);
             }
 
             public void Visit(Robot robot)
             {
-                SpawnWeight += robot.SpawnWeight;
+                _spawnWeight += _spawnerWeightConfig.RobotWeight;
+                DecreaseOnDeath(robot, _spawnerWeightConfig.RobotWeight);
+            }
+
+            private void DecreaseOnDeath(Enemy enemy, int amount)
+            {
+                Action<Enemy> OnDied = null;
+                OnDied = (Enemy enemy) =>
+                {
+                    _spawnWeight -= amount;
+                    enemy.Died -= OnDied;
+                    OnDied = null;
+                };
+                enemy.Died += OnDied;
             }
         }
     }

@@ -6,13 +6,13 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "RaceSO", fileName = "Race")]
 public class RaceConfig : ScriptableObject
 {
-    [SerializeField] private OrkRaceStats orkRaceStats;
-    [SerializeField] private HumanRaceStats humanRaceStats;
-    [SerializeField] private ElfRaceStats elfRaceStats;
+    [SerializeField] private Stats orkRaceStats;
+    [SerializeField] private Stats humanRaceStats;
+    [SerializeField] private Stats elfRaceStats;
 
-    public OrkRaceStats OrkRaceStats => orkRaceStats;
-    public HumanRaceStats HumanRaceStats => humanRaceStats;
-    public ElfRaceStats ElfRaceStats => elfRaceStats;
+    public Stats OrkRaceStats => orkRaceStats;
+    public Stats HumanRaceStats => humanRaceStats;
+    public Stats ElfRaceStats => elfRaceStats;
 
     private void OnValidate()
     {

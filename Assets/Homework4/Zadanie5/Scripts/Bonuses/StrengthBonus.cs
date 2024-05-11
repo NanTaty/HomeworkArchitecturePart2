@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StrengthBonus : BonusDecorator
 {
-    private StrengthModificator StrengthModificator => BonusConfig.StrengthModificator;
+    private BonusModificator StrengthModificator => BonusConfig.StrengthModificator;
     
     public StrengthBonus(IStatProvider statProvider, BonusConfig bonusConfig) : base(statProvider, bonusConfig)
     {

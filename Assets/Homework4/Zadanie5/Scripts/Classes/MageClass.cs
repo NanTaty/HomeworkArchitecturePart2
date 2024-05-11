@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MageClass : ClassDecorator
 {
-    private MageClassModificator MageClassModificator => ClassConfig.MageClassModificator;
+    private ClassModificator MageClassModificator => ClassConfig.MageClassModificator;
     public MageClass(IStatProvider statProvider, ClassConfig classConfig) : base(statProvider, classConfig)
     {
         

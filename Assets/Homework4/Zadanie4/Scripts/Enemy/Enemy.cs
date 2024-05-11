@@ -7,18 +7,6 @@ namespace Assets.Visitor
 {
     public abstract class Enemy: MonoBehaviour
     {
-        [SerializeField] private int spawnWeight;
-
-        public int SpawnWeight => spawnWeight;
-
-        private void OnValidate()
-        {
-            if (spawnWeight < 0)
-            {
-                spawnWeight = 0;
-            }
-        }
-
         public event Action<Enemy> Died;
 
         //Какая то общая логика врага: передвижение, жизни и тп.

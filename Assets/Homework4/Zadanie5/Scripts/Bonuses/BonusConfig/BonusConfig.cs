@@ -6,13 +6,13 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "BonusConfigs", fileName = "BonusConfig")]
 public class BonusConfig : ScriptableObject
 {
-    [SerializeField] private StrengthModificator strengthModificator;
-    [SerializeField] private DexterityModificator dexterityModificator;
-    [SerializeField] private IntelligenceModificator intelligenceModificator;
+    [SerializeField] private BonusModificator strengthModificator;
+    [SerializeField] private BonusModificator dexterityModificator;
+    [SerializeField] private BonusModificator intelligenceModificator;
 
-    public StrengthModificator StrengthModificator => strengthModificator;
-    public DexterityModificator DexterityModificator => dexterityModificator;
-    public IntelligenceModificator IntelligenceModificator => intelligenceModificator;
+    public BonusModificator StrengthModificator => strengthModificator;
+    public BonusModificator DexterityModificator => dexterityModificator;
+    public BonusModificator IntelligenceModificator => intelligenceModificator;
 
     private void OnValidate()
     {

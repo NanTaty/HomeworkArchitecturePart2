@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThiefClass : ClassDecorator
 {
-    private ThiefClassModificator ThiefClassModificator => ClassConfig.ThiefClassModificator;
+    private ClassModificator ThiefClassModificator => ClassConfig.ThiefClassModificator;
     
     public ThiefClass(IStatProvider statProvider, ClassConfig classConfig) : base(statProvider, classConfig)
     {

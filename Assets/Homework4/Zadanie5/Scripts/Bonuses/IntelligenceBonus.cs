@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IntelligenceBonus : BonusDecorator
 {
-    private IntelligenceModificator IntelligenceModificator => BonusConfig.IntelligenceModificator;
+    private BonusModificator IntelligenceModificator => BonusConfig.IntelligenceModificator;
     
     public IntelligenceBonus(IStatProvider statProvider, BonusConfig bonusConfig) : base(statProvider, bonusConfig)
     {

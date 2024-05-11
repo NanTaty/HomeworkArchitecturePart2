@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DexterityBonus : BonusDecorator
 {
-    private DexterityModificator DexterityModificator => BonusConfig.DexterityModificator;
+    private BonusModificator DexterityModificator => BonusConfig.DexterityModificator;
     
     public DexterityBonus(IStatProvider statProvider, BonusConfig bonusConfig) : base(statProvider, bonusConfig)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarriorClass : ClassDecorator
 {
-    private WarriorClassModificator WarriorClassModificator => ClassConfig.WarriorClassModificator;
+    private ClassModificator WarriorClassModificator => ClassConfig.WarriorClassModificator;
     
     public WarriorClass(IStatProvider statProvider, ClassConfig classConfig) : base(statProvider, classConfig)
     {

@@ -8,7 +8,7 @@ public class OrkRace : IStatProvider
     public int Dexterity { get; }
     public int Intelligence { get; }
 
-    public OrkRace(OrkRaceStats statProvider)
+    public OrkRace(Stats statProvider)
     {
         Strength = statProvider.Strength;
         Dexterity = statProvider.Dexterity;

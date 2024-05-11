@@ -5,12 +5,14 @@ namespace Assets.Visitor
     public class VisitorBootstrap : MonoBehaviour
     {
         [SerializeField] private Spawner _enemySpawner;
+        [SerializeField] private SpawnerWeightConfig _spawnerWeightConfig;
 
         private Score _score;
 
         private void Awake()
         {
             _score = new Score(_enemySpawner);
+            _enemySpawner.Init(_spawnerWeightConfig);
             _enemySpawner.StartWork();
         }
 

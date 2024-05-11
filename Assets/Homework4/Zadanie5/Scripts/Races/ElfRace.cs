@@ -8,7 +8,7 @@ public class ElfRace : IStatProvider
     public int Dexterity { get; }
     public int Intelligence { get; }
 
-    public ElfRace(ElfRaceStats statProvider)
+    public ElfRace(Stats statProvider)
     {
         Strength = statProvider.Strength;
         Dexterity = statProvider.Dexterity;
